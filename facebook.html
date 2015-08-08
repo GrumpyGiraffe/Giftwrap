@@ -52,6 +52,31 @@
         }, {scope: 'email,user_friends,read_custom_friendlists'});
     }
 
+    function sendRequestViaMultiFriendSelector() {
+        FB.ui({
+            method: 'apprequests',
+            message: "This message is displayed in invitation"
+        },send_wall_invitation);
+
+    }
+
+    function send_wall_invitation(response) {
+        // alert(response.to);
+        var send_invitation_url=base_url+'send_invitation';
+        jQuery.ajax({
+            url:send_invitation_url,
+            data:{
+                to:response.to
+            },
+            dataType:"json",
+            type: 'POST',
+            success: function(data){
+//            alert("");
+            }
+
+        })
+    }
+
 
 </script>
 
