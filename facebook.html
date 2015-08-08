@@ -81,6 +81,21 @@
 </script>
 
 <script>
+    function FBInvite(){
+        FB.ui({
+            method: 'apprequests',
+            message: 'Invite your Facebook Friends'
+        },function(response) {
+            if (response) {
+                alert('Successfully Invited');
+            } else {
+                alert('Failed To Invite');
+            }
+        });
+    }
+</script>
+
+<script>
     var friendsList =
     {"data": [
         {
@@ -110,6 +125,8 @@
 </script>
 
 <button onclick="myFacebookLogin()">Login with Facebook</button>
+<button onclick="sendRequestViaMultiFriendSelector()">Don't See your friends? Invite Them</button>
+<button onclick="FBInvite()">Invite</button>
 
 
 <p id="userName"></p>
