@@ -83,14 +83,8 @@
 <script>
     function FBInvite(){
         FB.ui({
-            method: 'apprequests',
-            message: 'Invite your Facebook Friends'
-        },function(response) {
-            if (response) {
-                alert('Successfully Invited');
-            } else {
-                alert('Failed To Invite');
-            }
+            method: 'send',
+            link: 'http://grumpygiraffe.github.io/Giftwrap/facebook.html',
         });
     }
 </script>
