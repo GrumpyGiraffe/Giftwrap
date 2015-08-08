@@ -112,6 +112,45 @@
     }
 </script>
 
+<script>
+    function FBInvite(){
+        FB.ui({
+            method: 'send',
+            link: 'http://grumpygiraffe.github.io/Giftwrap/facebook.html',
+            %message:'Hey I would like to find you a gift. Please sign up for this app'
+        });
+    }
+</script>
+
+<script>
+    var friendsList =
+    {"data": [
+        {
+            "name": "Tuğba Coşkun",
+            "id": "584223463345"
+        },
+        {
+            "name": "Vijay Prema",
+            "id": "689076168"
+        },
+        {
+            "name": "Lisa Maddock",
+            "id": "68953213384"
+        },
+        {
+            "name": "Robbie Bruck",
+            "id": "101524742248854151241"
+        }
+    ],
+            "summary": {
+        "total_count": 466
+    }};
+
+    console.log(friendsList);
+
+
+</script>
+
 
 <img id="facebookLogin" onClick="myFacebookLogin()" src="img/facebook_login.png" alt="Login with Facebook..." >
 
