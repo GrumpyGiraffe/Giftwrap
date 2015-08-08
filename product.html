@@ -16,6 +16,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
 
     <script src="js/bootstrap.min.js"></script>
@@ -67,13 +68,13 @@
 <div class="jumbotron">
    <div class="container">
    
-         <h3>Top recommendations for Sheldon</h3>
+         <h3><span id="fbName">{{fbName}}</span> may like...</h3>
 
-   <img src="http://ecx.images-amazon.com/images/I/61Ip6HhTk7L._SX425_.jpg" class="img-rounded img-responsive">
+   <img src="<span id="imagePath">{{imagePath}}></span>.jpg" class="img-rounded img-responsive">
    
-      <h2>Selfie Stick</h2>
-      <p>$14.95</p>
-      <p>View in TradeMe</p>
+      <h2><span id="productName">{{productName}}</span></h2>
+      <p>$ <span id="price>{{price}}</span>"</p>
+      <a href=""><p>View in TradeMe</p></a>
 
       
 
