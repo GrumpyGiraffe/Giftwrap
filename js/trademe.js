@@ -29,6 +29,24 @@ $(document).ready(function () {
           });
     };
 
+    var keyword = get_keyword(731197676989916);
+    console.log(keyword);
+    search(keyword);
+
+
+    var updatePage = function (keyword) {
+        var listings = keyword.List;
+        console.log(listings);
+        $('#listings').html(''); // clear html
+        for (var i = 0; i < listings.length; i++) {
+            var obj = listings[i];
+            console.log(obj);
+            var html = "<li class='looking-good'>" + obj.Title + " - " + obj.PriceDisplay + "<br><img src='" + obj.PictureHref + "'/></li>";
+            $('#listings').append(html);
+        }
+    };
+
+    /*
     var updatePage = function (data) {
         var listings = data.List;
         console.log(listings);
@@ -40,4 +58,5 @@ $(document).ready(function () {
             $('#listings').append(html);
         }
     };
+    */
 });
