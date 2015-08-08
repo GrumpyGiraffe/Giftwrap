@@ -16,6 +16,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -66,10 +67,55 @@
       <h1>Gift Buying Automated.</h1>
       <p>The smart gift finder - Buy gifts based on your friends interests.</p>
       <p>To get started, connect to Facebook below</p>
-      
-		<a href="connected.html">
-        <img src="img/facebook_login.png" class="img-responsive">
-        </a>
+
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1459057421065180',
+            xfbml      : true,
+            version    : 'v2.4'
+        });
+    };
+
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+
+        js = d.createElement(s); js.id = id;
+        console.log("js" ,js);
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        console.log("fjs",fjs)
+    }(document, 'script', 'facebook-jssdk'));
+
+      function myFacebookLogin() {
+        FB.login(function (response) {
+            if (response.authResponse) {
+                FB.api(
+                        "/{friend-list-id}/members",
+                        function (response) {
+                            console.log(response);
+                            if (response && !response.error) {
+                                /* handle the result */
+                            }
+                        }
+                );
+                console.log('Welcome!  Fetching your information.... ');
+                FB.api('/me', function(response) {
+                    console.log('Good to see you, ' + response.name + '.');
+                });
+            } else {
+                console.log('User cancelled login or did not fully authorize.');
+            }
+        }, {scope: 'email,user_friends,read_custom_friendlists'});
+    }
+</script>
+
+
+<img id="facebookLogin" onClick="myFacebookLogin()" src="img/facebook_login.png" alt="Login with Facebook..." >
+
+     
      
    </div>
 </div>
