@@ -31,34 +31,60 @@
 
 
     function myFacebookLogin() {
-        FB.login(function(){}, {scope: 'read_custom_friendlists'});
+        FB.login(function (response) {
+            if (response.authResponse) {
+                FB.api(
+                        "/{friend-list-id}/members",
+                        function (response) {
+                            console.log(response);
+                            if (response && !response.error) {
+                                /* handle the result */
+                            }
+                        }
+                );
+                console.log('Welcome!  Fetching your information.... ');
+                FB.api('/me', function(response) {
+                    console.log('Good to see you, ' + response.name + '.');
+                });
+            } else {
+                console.log('User cancelled login or did not fully authorize.');
+            }
+        }, {scope: 'email,user_friends,read_custom_friendlists'});
     }
 
-    FB.api(
-            "/{friend-list-id}",
-            function (response) {
-                if (response && !response.error) {
-                    console.log("holla",response);
-                    /* handle the result */
-                }
-            }
-    );
+
+</script>
+
+<script>
+    var friendsList =
+    {"data": [
+        {
+            "name": "Tuğba Coşkun",
+            "id": "584223463345"
+        },
+        {
+            "name": "Vijay Prema",
+            "id": "689076168"
+        },
+        {
+            "name": "Lisa Maddock",
+            "id": "68953213384"
+        },
+        {
+            "name": "Robbie Bruck",
+            "id": "101524742248854151241"
+        }
+    ],
+            "summary": {
+        "total_count": 466
+    }};
+
+    console.log(friendsList);
 
 
 </script>
 
 <button onclick="myFacebookLogin()">Login with Facebook</button>
-
-
-<div
-        class="fb-like"
-        data-share="true"
-        data-width="450"
-        data-show-faces="true">
-
-
-    );
-</div>
 
 
 <p id="userName"></p>
