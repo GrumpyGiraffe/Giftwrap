@@ -11,25 +11,11 @@
             xfbml      : true,
             version    : 'v2.4'
         });
+
+
+
+
     };
-
-
-        FB.login(function(response) {
-            // handle the response
-        }, {scope: 'email,read_custom_friendlists'});
-
-        /* make the API call */
-        FB.api(
-                "/{friend-list-id}",
-                function (response) {
-                    if (response && !response.error) {
-                        console.log(response);
-                        /* handle the result */
-                    }
-                }
-        );
-
-
 
 
     (function(d, s, id){
@@ -42,7 +28,27 @@
         fjs.parentNode.insertBefore(js, fjs);
         console.log("fjs",fjs)
     }(document, 'script', 'facebook-jssdk'));
+
+
+    function myFacebookLogin() {
+        FB.login(function(){}, {scope: 'read_custom_friendlists'});
+    }
+
+    FB.api(
+            "/{friend-list-id}",
+            function (response) {
+                if (response && !response.error) {
+                    console.log("holla",response);
+                    /* handle the result */
+                }
+            }
+    );
+
+
 </script>
+
+<button onclick="myFacebookLogin()">Login with Facebook</button>
+
 
 <div
         class="fb-like"
