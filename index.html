@@ -68,8 +68,27 @@
       <p>The smart gift finder - Buy gifts based on your friends interests.</p>
       <p>To get started, connect to Facebook below</p>
 
-//script for facebooklogin
 <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1459057421065180',
+            xfbml      : true,
+            version    : 'v2.4'
+        });
+    };
+
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+
+        js = d.createElement(s); js.id = id;
+        console.log("js" ,js);
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        console.log("fjs",fjs)
+    }(document, 'script', 'facebook-jssdk'));
+
       function myFacebookLogin() {
         FB.login(function (response) {
             if (response.authResponse) {
