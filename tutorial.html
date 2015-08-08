@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title>Client Flow Example</title>
+</head>
+
+<body>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1459057421065180',
+            xfbml      : true,
+            version    : 'v2.4'
+        });
+    };
+
+
+        FB.login(function(response) {
+            // handle the response
+        }, {scope: 'email,read_custom_friendlists'});
+
+        /* make the API call */
+        FB.api(
+                "/{friend-list-id}",
+                function (response) {
+                    if (response && !response.error) {
+                        console.log(response);
+                        /* handle the result */
+                    }
+                }
+        );
+
+
+
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+
+        js = d.createElement(s); js.id = id;
+        console.log("js" ,js);
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        console.log("fjs",fjs)
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div
+        class="fb-like"
+        data-share="true"
+        data-width="450"
+        data-show-faces="true">
+
+
+    );
+</div>
+
+
+<p id="userName"></p>
+</body>
+</html>
