@@ -80,7 +80,7 @@ function myFacebookLogin() {
             console.log('Welcome!  Fetching your information.... ');
             FB.api('/me', function(response) {
                 facebookData.user = response.name;
-                console.log(response);
+                console.log('response', response);
                 console.log('Good to see you, ' + response.name + '.');
             });
         } else {
