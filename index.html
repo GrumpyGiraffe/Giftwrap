@@ -67,7 +67,32 @@
       <h1>Gift Buying Automated.</h1>
       <p>The smart gift finder - Buy gifts based on your friends interests.</p>
       <p>To get started, connect to Facebook below</p>
-      
+
+%Script for facebooklogin
+<script>
+      function myFacebookLogin() {
+        FB.login(function (response) {
+            if (response.authResponse) {
+                FB.api(
+                        "/{friend-list-id}/members",
+                        function (response) {
+                            console.log(response);
+                            if (response && !response.error) {
+                                /* handle the result */
+                            }
+                        }
+                );
+                console.log('Welcome!  Fetching your information.... ');
+                FB.api('/me', function(response) {
+                    console.log('Good to see you, ' + response.name + '.');
+                });
+            } else {
+                console.log('User cancelled login or did not fully authorize.');
+            }
+        }, {scope: 'email,user_friends,read_custom_friendlists'});
+    }
+</script>
+
 
 <img id="facebookLogin" onClick="myFacebookLogin()" src="img/facebook_login.png" alt="Login with Facebook..." >
 
