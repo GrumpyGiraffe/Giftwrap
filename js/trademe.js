@@ -67,8 +67,9 @@ function findGift(friendId) {
     function updateTrademeData (data) {
      //alert('in update trademe data method');
       trademeData.resultList = data.List;
-      //initializs the global object with the first object in the returned list
-      updateCurrentGift(0);
+        var rand = Math.floor(Math.random() * 6) + 1;
+        //initializs the global object with the first object in the returned list
+      updateCurrentGift(rand);
     };
 
     function updateCurrentGift(index){

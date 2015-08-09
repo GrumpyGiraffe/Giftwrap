@@ -42,12 +42,17 @@ var friendsLikes =
             },
             {
                 "name": "Xbox",
-                "id": "625550504175443",
+                "id": "6255502344175443",
                 "created_time": "2014-11-26T23:26:46+000"
             },
             {
                 "name": "Monopoly",
-                "id": "625550504175443",
+                "id": "6255505023475443",
+                "created_time": "2014-11-26T23:26:46+000"
+            },
+            {
+                "name": "Football",
+                "id": "6255505041234443",
                 "created_time": "2014-11-26T23:26:46+000"
             }
         ]
@@ -140,7 +145,7 @@ function myFacebookLogin() {
         facebookData.userID = 123;
         //getFriendsList();
         console.log('Good to see you, ' + facebookData.user + '.');
-
+        load_selectedfriends();
     } else {
 
 
