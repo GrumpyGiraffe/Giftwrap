@@ -1,5 +1,5 @@
 var trademeData = {
-  keyword : "",
+  keyword : "",  //the keyword will represent the category, to change the category change the keyword
   resultList: [],
   currentGift: {
     title: "",
@@ -8,6 +8,9 @@ var trademeData = {
   },
   currentGiftIndex: 0,
 };
+
+var keywordIndex = 0;
+
 
 $(document).ready(function () {
 
@@ -25,8 +28,16 @@ $(document).ready(function () {
         search(searchTerm);
     });
 
-    var search = function (searchTerm) {
+    //get keywordds should return a list of objects
+    var keywordList = get_keywords(); 
+    console.log(keywordList[keywordIndex]);
+    //use the first keyword to search
+    var searchTerm = search(keywordList[keywordIndex]);
+    trademeData.keyword = searchTerm;
+    //search(searchTerm);
 
+    //var search = function (searchTerm) {
+     function search(searchTerm) {
         var queryString = 'search_string=' + searchTerm;
 
         var url = 'https://api.trademe.co.nz/v1/Search/General.json?oauth_consumer_key=' + consumerKey + '&oauth_signature_method=PLAINTEXT&oauth_signature=' + consumerSecret + '&' + queryString + '&photo_size=FullSize';
@@ -58,8 +69,11 @@ $(document).ready(function () {
       console.log('in update gift method');
       console.log(index);
       trademeData.currentGift = {
-        title: trademeData.resultList[index].title,
-        img: trademeData.resultList[index].PictureHref,
+        title: trademeData.resultList[index].Title,
+        //if(trademeData.resultList[index].PictureHref = "")
+         // img:
+        //else
+          img: trademeData.resultList[index].PictureHref,
         price: trademeData.resultList[index].PriceDisplay,
       };
 
@@ -106,17 +120,10 @@ $(document).ready(function () {
 
 
 
-    /*
-    var updatePage = function (data) {
-        var listings = data.List;
-        console.log(listings);
-        $('#listings').html(''); // clear html
-        for (var i = 0; i < listings.length; i++) {
-            var obj = listings[i];
-            console.log(obj);
-            var html = "<li class='looking-good'>" + obj.Title + " - " + obj.PriceDisplay + "<br><img src='" + obj.PictureHref + "'/></li>";
-            $('#listings').append(html);
-        }
-    };
-    */
+    $('#nextCat').click(function(){
+        keywordIndex++;
+        console.log(keywordIndex);
+        if(keywordIndex >= 0 && keywordIndex < keywordList.length)
+          search(keywordList[keywordIndex]);
+    }); 
 });

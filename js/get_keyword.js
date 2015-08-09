@@ -56,10 +56,20 @@ var jsonLikesList = {
       "category": "Entertainment Website"
     }]
 }
+
 function get_keyword(friendId) {
   var listOfLikes =  jsonLikesList.data;
   console.log(listOfLikes);
   var randomNumber = Math.round(Math.random() * (listOfLikes.length - 1));
   console.log(listOfLikes[randomNumber]);
   return listOfLikes[randomNumber].name;
+}
+
+
+function get_keywords() {
+  var listOfLikes =  jsonLikesList.data;
+  console.log(listOfLikes);
+  //var randomNumber = Math.round(Math.random() * (listOfLikes.length - 1));
+  //console.log(listOfLikes[randomNumber]);
+  return listOfLikes;
 }
