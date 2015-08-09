@@ -16,7 +16,7 @@ function appStart() {
     });
     $('#facebookLogin').click(function() {
         myFacebookLogin();
-        load_selectedfriends();
+
     });
     // Ajaxed content
 
