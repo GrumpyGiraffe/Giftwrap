@@ -94,7 +94,6 @@ function getFriendsList(){
         function (response) {
             console.log(response);
             if (response) {
-                console.log(response);
                 var data = friendsList;
                 facebookData.friendsList = friendsList;
 
@@ -130,6 +129,7 @@ function getFriendsLikes(id){
 function selectFriend(id){
     for(var i = 0; i<facebookData.friendsList.length; i++){
         if(facebookData.friendsList[i].id == id){
+            console.log('id of selected friend', facebookData.friendsList[i].id);
             facebookData.selectedFriend = facebookData.friendsList[i]
         }
     }
