@@ -112,11 +112,6 @@ var jsonLikesList = {
       "category": "Actor/Director"
     },
     {
-      "id": "128529000519949",
-      "name": "Emily de Molly",
-      "category": "Health/Beauty"
-    },
-    {
       "id": "121255121263267",
       "name": "James Gurney",
       "category": "Artist"
@@ -132,11 +127,6 @@ var jsonLikesList = {
       "category": "Musician/Band"
     },
     {
-      "id": "203985835428",
-      "name": "Extra Ordinary Comics",
-      "category": "Artist"
-    },
-    {
       "id": "201412066560080",
       "name": "Nadia Lim",
       "category": "Public Figure"
@@ -150,7 +140,20 @@ var jsonLikesList = {
       "id": "274970656197",
       "name": "Hong Kong Subtitles",
       "category": "Entertainment Website"
-    }]
+    },
+    {
+      "name": "Food Culture",
+      "category": "Community",
+      "likes": 568,
+      "id": "1376927319288555"
+    },
+    {
+      "name": "Google at UoA",
+      "category": "Education",
+      "likes": 1257,
+      "id": "104129093050548"
+    }
+    ]
 }
 function get_keyword(friendId) {
   var listOfLikes =  filterCategories(jsonLikesList.data);
@@ -164,8 +167,6 @@ function filterCategories(data) {
   var filteredData = [];
   for (var i = 0; i < data.length; i++) {
     var categoryOfObject = data[i].category;
-    console.log(categoryOfObject);
-    console.log(categoryWhitelist[categoryOfObject]);
     if (typeof categoryWhitelist[categoryOfObject] !== "undefined") {
       filteredData.push(data[i])
     }
