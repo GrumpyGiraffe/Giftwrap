@@ -135,8 +135,8 @@ function selectFriend(id) {
 
 function myFacebookLogin() {
 
-    if (false) {
-        facebookData.user = 'test';
+    if (true) {
+        facebookData.user = 'Rowan';
         facebookData.userID = 123;
         //getFriendsList();
         console.log('Good to see you, ' + facebookData.user + '.');
