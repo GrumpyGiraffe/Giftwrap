@@ -5,6 +5,7 @@ var trademeData = {
     title: "",
     img: "",
     price: "",
+      url: "",
   },
   currentGiftIndex: 0,
 };
@@ -18,7 +19,7 @@ function trademeStart() {
 
 function findGift(friendId) {
     //get keywords should return a string
-    var keyword = get_keyword(friendId);
+    var keyword = facebookData.selectedLike;
     //console.log(keyword);
     //use the first keyword to search
     search(keyword);
@@ -44,6 +45,7 @@ function findGift(friendId) {
 
     //var search = function (searchTerm) {
      function search(searchTerm) {
+         console.log('SEARCH TERM:', searchTerm);
         var queryString = 'search_string=' + searchTerm;
 
         var url = 'https://api.trademe.co.nz/v1/Search/General.json?oauth_consumer_key=' + consumerKey + '&oauth_signature_method=PLAINTEXT&oauth_signature=' + consumerSecret + '&' + queryString + '&photo_size=FullSize';
@@ -53,10 +55,9 @@ function findGift(friendId) {
             method: "GET"
         })
           .done(function (data) {
-              trademeSearchData = data;
-              console.log(data);
-              
-              updateTrademeData(data);
+                console.log('trademe data:', data);
+                updateTrademeData(data);
+                load_product();
           })
           .fail(function () {
               console.log('Request failed');
@@ -66,14 +67,13 @@ function findGift(friendId) {
     function updateTrademeData (data) {
      //alert('in update trademe data method');
       trademeData.resultList = data.List;
-      console.log(trademeData.resultList);
       //initializs the global object with the first object in the returned list
       updateCurrentGift(0);
     };
 
     function updateCurrentGift(index){
-      console.log('in update gift method');
-      console.log(index);
+        var url = "http://www.trademe.co.nz" + trademeData.resultList[index].CategoryPath + "/auction-"
+            + trademeData.resultList[index].ListingId + ".htm";
       trademeData.currentGift = {
         title: trademeData.resultList[index].Title,
         //if(trademeData.resultList[index].PictureHref = "")
@@ -81,6 +81,7 @@ function findGift(friendId) {
         //else
           img: trademeData.resultList[index].PictureHref,
         price: trademeData.resultList[index].PriceDisplay,
+          url: url,
       };
 
       trademeData.currentGiftIndex = index;

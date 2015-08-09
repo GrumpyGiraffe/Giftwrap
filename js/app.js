@@ -23,8 +23,8 @@ function appStart() {
     $('#content').on('click', '#giftButton', function() {
         var friendId = getOption();
         selectFriend(friendId);
+        get_keyword(friendId);
         findGift(friendId);
-        load_product();
     })
 }
 
@@ -32,7 +32,7 @@ function load_selectedfriends() {
 	var url = 'templates/selectfriends.html';
 	$.ajax({
 		url: url,
-		method: 'GET',	
+		method: 'GET'
 	}).done(function(data) {
         getSelectedFriendsPage(data);
 	})
@@ -50,9 +50,11 @@ function load_product() {
 
 function getProductPage(html) {
     updatePage(html);
+    console.log('trademeData.currentGift.', trademeData.currentGift);
     $('#fbName').html(facebookData.selectedFriend.name);
     $('#productName').html(trademeData.currentGift.title);
     $('#price').html(trademeData.currentGift.price);
+    $('#likeName').html(facebookData.selectedLike);
     var link = '<a href="'+ trademeData.currentGift.url +'">View in TradeMe</a>';
     var imageLink = '<img src="' + trademeData.currentGift.img + '">';
     $('#trademeLink').html(link);

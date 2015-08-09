@@ -43,19 +43,19 @@ var friendsList =
 {
     "data": [
         {
-            "name": "Tuğba Coşkun",
+            "name": "Julian de Villiers",
             "id": "584223463345"
         },
         {
-            "name": "Vijay Prema",
+            "name": "Saif Asad",
             "id": "689076168"
         },
         {
-            "name": "Lisa Maddock",
+            "name": "Sana Oshika",
             "id": "68953213384"
         },
         {
-            "name": "Robbie Bruck",
+            "name": "Sheldon Nunes",
             "id": "101524742248854151241"
         }
     ],
@@ -112,7 +112,6 @@ function selectFriend(id) {
     for (var i = 0; i < facebookData.friendsList.data.length; i++) {
         console.log('current id', facebookData.friendsList.data[i].id);
         if (facebookData.friendsList.data[i].id == id) {
-            console.log('found friend', facebookData.friendsList.data[i]);
             facebookData.selectedFriend = facebookData.friendsList.data[i];
         }
     }
@@ -183,10 +182,9 @@ function FBInvite() {
 console.log(facebookData);
 
 function get_keyword(friendId) {
-    var listOfLikes = facebookData.likes;
+    var listOfLikes = friendsLikes.likes.data;
     console.log('working', listOfLikes);
     var randomNumber = Math.round(Math.random() * (listOfLikes.length - 1));
     console.log(listOfLikes[randomNumber]);
-    facebookData.selectedLike = listOfLikes[randomNumber];
-    //return listOfLikes[randomNumber].name;
+    facebookData.selectedLike = listOfLikes[randomNumber].name;
 }
