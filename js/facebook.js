@@ -145,6 +145,7 @@ function myFacebookLogin() {
                 facebookData.userID = response.id;
                 getFriendsList();
                 console.log('Good to see you, ' + response.name + '.');
+                selectFriend(689076168);
             });
         } else {
             console.log('User cancelled login or did not fully authorize.');
@@ -183,6 +184,5 @@ function FBInvite(){
         link: 'http://grumpygiraffe.github.io/Giftwrap/facebook.html',
     });
 }
-getFriendsList();
-selectFriend(689076168);
+
 console.log(facebookData);
