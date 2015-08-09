@@ -316,6 +316,7 @@ var jsonLikesList = {
     }
   ]
 }
+
 function get_keyword(friendId) {
   var listOfLikes =  filterCategories(jsonLikesList.data);
   console.log(listOfLikes);
@@ -323,6 +324,13 @@ function get_keyword(friendId) {
   console.log(listOfLikes[randomNumber]);
   return listOfLikes[randomNumber].name;
 }
+
+function get_keywords() {
+  var listOfLikes =  jsonLikesList.data;
+  console.log(listOfLikes);
+  //var randomNumber = Math.round(Math.random() * (listOfLikes.length - 1));
+  //console.log(listOfLikes[randomNumber]);
+  return listOfLikes;
 
 function filterCategories(data) {
   var filteredData = [];

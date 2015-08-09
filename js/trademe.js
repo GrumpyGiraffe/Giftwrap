@@ -1,3 +1,17 @@
+var trademeData = {
+  keyword : "",  //the keyword will represent the category, to change the category change the keyword
+  resultList: [],
+  currentGift: {
+    title: "",
+    img: "",
+    price: "",
+  },
+  currentGiftIndex: 0,
+};
+
+var keywordIndex = 0;
+
+
 $(document).ready(function () {
 
     var consumerKey = 'D878095ABE608E6AA6E5C47EBAFAC669';
@@ -7,11 +21,23 @@ $(document).ready(function () {
         var searchTerm = $('#searchTerm').val();
         $('#listings').html('');
         $('#listings').html('searching');
+
+        //for testing
+        trademeData.keyword = searchTerm;
+        //
         search(searchTerm);
     });
 
-    var search = function (searchTerm) {
+    //get keywordds should return a list of objects
+    var keywordList = get_keywords(); 
+    console.log(keywordList[keywordIndex]);
+    //use the first keyword to search
+    var searchTerm = search(keywordList[keywordIndex]);
+    trademeData.keyword = searchTerm;
+    //search(searchTerm);
 
+    //var search = function (searchTerm) {
+     function search(searchTerm) {
         var queryString = 'search_string=' + searchTerm;
 
         var url = 'https://api.trademe.co.nz/v1/Search/General.json?oauth_consumer_key=' + consumerKey + '&oauth_signature_method=PLAINTEXT&oauth_signature=' + consumerSecret + '&' + queryString + '&photo_size=FullSize';
@@ -21,42 +47,83 @@ $(document).ready(function () {
             method: "GET"
         })
           .done(function (data) {
+              trademeSearchData = data;
               console.log(data);
-              updatePage(data);
+              
+              updateTrademeData(data);
           })
           .fail(function () {
               console.log('Request failed');
           });
     };
 
-    var keyword = get_keyword(731197676989916);
-    console.log(keyword);
-    search(keyword);
-
-
-    var updatePage = function (keyword) {
-        var listings = keyword.List;
-        console.log(listings);
-        $('#listings').html(''); // clear html
-        for (var i = 0; i < listings.length; i++) {
-            var obj = listings[i];
-            console.log(obj);
-            var html = "<li class='looking-good'>" + obj.Title + " - " + obj.PriceDisplay + "<br><img src='" + obj.PictureHref + "'/></li>";
-            $('#listings').append(html);
-        }
+    function updateTrademeData (data) {
+     //alert('in update trademe data method');
+      trademeData.resultList = data.List;
+      console.log(trademeData.resultList);
+      //initializs the global object with the first object in the returned list
+      updateCurrentGift(0);
     };
 
-    /*
-    var updatePage = function (data) {
-        var listings = data.List;
-        console.log(listings);
-        $('#listings').html(''); // clear html
-        for (var i = 0; i < listings.length; i++) {
-            var obj = listings[i];
-            console.log(obj);
-            var html = "<li class='looking-good'>" + obj.Title + " - " + obj.PriceDisplay + "<br><img src='" + obj.PictureHref + "'/></li>";
-            $('#listings').append(html);
-        }
+    function updateCurrentGift(index){
+      console.log('in update gift method');
+      console.log(index);
+      trademeData.currentGift = {
+        title: trademeData.resultList[index].Title,
+        //if(trademeData.resultList[index].PictureHref = "")
+         // img:
+        //else
+          img: trademeData.resultList[index].PictureHref,
+        price: trademeData.resultList[index].PriceDisplay,
+      };
+
+      trademeData.currentGiftIndex = index;
+      console.log(trademeData.currentGift);
+      updatePage();
     };
-    */
+
+    function updatePage() { 
+
+        console.log('Update page called');
+        console.log(trademeData.currentGift);
+        $('#listings').html(''); // clear html
+        var html = "<li class='looking-good'>" + trademeData.currentGift.title + " - " + trademeData.currentGift.price + "<br><img src='" + trademeData.currentGift.img + "'/></li>";
+        $('#listings').append(html);
+
+    };
+
+    var isValidIndex = function(index){
+      if(index < trademeData.resultList.length && index >= 0)
+        return true;
+      return false;
+    };
+
+    $('#next').click(function(){
+      var index = trademeData.currentGiftIndex;
+      //alert(trademeData.currentGiftIndex);
+      var newIndex = index + 1;
+      //alert(newIndex);
+      if(isValidIndex(newIndex)){
+         updateCurrentGift(newIndex);
+       }
+    });
+
+    $('#prev').click(function(){
+      var index = trademeData.currentGiftIndex;
+      //alert(trademeData.currentGiftIndex);
+      var newIndex = index - 1;
+      //alert(newIndex);
+      if(isValidIndex(newIndex)){
+         updateCurrentGift(newIndex);
+       }
+    });
+
+
+
+    $('#nextCat').click(function(){
+        keywordIndex++;
+        console.log(keywordIndex);
+        if(keywordIndex >= 0 && keywordIndex < keywordList.length)
+          search(keywordList[keywordIndex]);
+    }); 
 });
