@@ -183,5 +183,6 @@ function FBInvite(){
         link: 'http://grumpygiraffe.github.io/Giftwrap/facebook.html',
     });
 }
+getFriendsList();
 selectFriend(689076168);
 console.log(facebookData);
