@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,8 +18,12 @@
     <link href="css/style.css" rel="stylesheet">
 
 
-    <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/app.js"></script>
+        <script src = js/facebook.js"></script>
+        <script src = js/trademe.js"></script>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -32,6 +35,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
+
 
   <body>
     <!-- Navigation -->
@@ -68,6 +72,7 @@
 
 <div class="jumbotron">
    <div class="container">
+<<<<<<< Updated upstream
       <h2>Great <span id="fbName">{{fbName}}</span>!</br>Now choose a friend..</h2>
       
       
@@ -79,11 +84,27 @@
   <option value="FB_User_ID">Friend 5</option>
   <option value="FB_User_ID">Friend 6</option>
 </select>
+=======
+      <h1>Great! Now choose a friend..</h1>
+>>>>>>> Stashed changes
 
 
+<select class="form-control" id="chooseFriend">
+  <option value="1">Friend 1</option>
+  <option value="2">Friend 2</option>
+  <option value="3">Friend 3</option>
+  <option value="4">Friend 4</option>
+  <option value="5">Friend 5</option>
+  <option value="6">Friend 6</option>
 
+</select>
 
-<p><a class="btn btn-success btn-lg" href="product.html" role="button">Find me gifts! &raquo;</a></p>
+<script>
+    console.log("HERE");
+    listFriends();
+</script>
+
+<p><a class="btn btn-success btn-lg" href="product.html" onClick = "getOption()" role="button">Find me gifts! &raquo;</a></p>
 
 
       <h2>Don't see your friend? <a href="#">Send them an invite!</a></h2>
