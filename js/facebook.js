@@ -94,7 +94,6 @@ function getFriendsList(){
         function (response) {
             console.log(response);
             if (response) {
-                console.log(response);
                 var data = friendsList;
                 facebookData.friendsList = friendsList;
 
@@ -130,6 +129,7 @@ function getFriendsLikes(id){
 function selectFriend(id){
     for(var i = 0; i<facebookData.friendsList.length; i++){
         if(facebookData.friendsList[i].id == id){
+            console.log('id of selected friend', facebookData.friendsList[i].id);
             facebookData.selectedFriend = facebookData.friendsList[i]
         }
     }
@@ -145,6 +145,7 @@ function myFacebookLogin() {
                 facebookData.userID = response.id;
                 getFriendsList();
                 console.log('Good to see you, ' + response.name + '.');
+                selectFriend(689076168);
             });
         } else {
             console.log('User cancelled login or did not fully authorize.');
@@ -183,6 +184,5 @@ function FBInvite(){
         link: 'http://grumpygiraffe.github.io/Giftwrap/facebook.html',
     });
 }
-getFriendsList();
-selectFriend(689076168);
+
 console.log(facebookData);
