@@ -62,7 +62,6 @@ var friendsList =
         "total_count": 466
     }};
 
-console.log(friendsList);
 
 
 
@@ -96,6 +95,7 @@ function getFriendsList(){
             if (response) {
                 var data = friendsList;
                 facebookData.friendsList = friendsList;
+                selectFriend(689076168);
 
 
             }
@@ -105,12 +105,15 @@ function getFriendsList(){
 
 function get_keyword(friendId) {
     var listOfLikes =  facebookData.likes;
-    console.log(listOfLikes);
+    console.log('working',listOfLikes);
     var randomNumber = Math.round(Math.random() * (listOfLikes.length - 1));
     console.log(listOfLikes[randomNumber]);
-    return listOfLikes[randomNumber].name;
+    facebookData.selectedLike = listOfLikes[randomNumber];
+    //return listOfLikes[randomNumber].name;
 }
 
+
+/*
 function getFriendsLikes(id){
     FB.api('/'+id+'/likes', function(response) {
         console.log('friends likes',response);
@@ -125,32 +128,49 @@ function getFriendsLikes(id){
 
     })
 }
+*/
 
 function selectFriend(id){
-    for(var i = 0; i<facebookData.friendsList.length; i++){
-        if(facebookData.friendsList[i].id == id){
-            console.log('id of selected friend', facebookData.friendsList[i].id);
-            facebookData.selectedFriend = facebookData.friendsList[i]
+    console.log('friends list', facebookData.friendsList);
+    for(var i = 0; i<facebookData.friendsList.data.length; i++){
+        console.log('current id', facebookData.friendsList.data[i].id);
+        if(facebookData.friendsList.data[i].id == id){
+            console.log('found friend', facebookData.friendsList.data[i]);
+            facebookData.selectedFriend = facebookData.friendsList.data[i];
         }
     }
+    get_keyword(facebookData.selectedFriend.id);
 }
 
-function myFacebookLogin() {
-    FB.login(function (response) {
-        if (response.authResponse) {
 
-            console.log('Welcome!  Fetching your information.... ');
-            FB.api('/me', function(response) {
-                facebookData.user = response.name;
-                facebookData.userID = response.id;
-                getFriendsList();
-                console.log('Good to see you, ' + response.name + '.');
-                selectFriend(689076168);
-            });
-        } else {
-            console.log('User cancelled login or did not fully authorize.');
-        }
-    }, {scope: 'email,user_friends,read_custom_friendlists'});
+function myFacebookLogin() {
+
+    if (true) {
+        facebookData.user = 'test';
+        facebookData.userID = 123;
+        getFriendsList();
+        console.log('Good to see you, ' + facebookData.user + '.');
+
+    } else {
+
+
+        FB.login(function (response) {
+            if (response.authResponse) {
+
+                console.log('Welcome!  Fetching your information.... ');
+                FB.api('/me', function (response) {
+
+                    facebookData.user = response.name || 'test';
+                    facebookData.userID = response.id || '123';
+                    getFriendsList();
+                    console.log('Good to see you, ' + response.name + '.');
+
+                });
+            } else {
+                console.log('User cancelled login or did not fully authorize.');
+            }
+        }, {scope: 'email,user_friends,read_custom_friendlists'});
+    }
 }
 
 function sendRequestViaMultiFriendSelector() {
