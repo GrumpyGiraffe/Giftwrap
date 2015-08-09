@@ -129,7 +129,7 @@ function getFriendsLikes(id){
 
 function selectFriend(id){
     for(var i = 0; i<facebookData.friendsList.length; i++){
-        if(facebookData.friendsList[i] == id){
+        if(facebookData.friendsList[i].id == id){
             facebookData.selectedFriend = facebookData.friendsList[i]
         }
     }
