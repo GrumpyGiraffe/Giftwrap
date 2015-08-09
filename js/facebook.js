@@ -70,7 +70,7 @@ var friendsList =
             "id": "68953213384"
         },
         {
-            "name": "Sheldon Nunes",
+            "name": "Rowan Savage",
             "id": "101524742248854151241"
         }
     ],
