@@ -2,3 +2,17 @@
 	cursor:pointer;
 	
 }
+
+#chooseFriend {
+	width:320px;
+	margin: 0 auto;
+	font-size:24px;
+	height: 40px;
+	margin-top: 40px;
+}
+
+.jumbotron .img-responsive {
+    margin: 0 auto;
+	max-width: 534;
+	max-height:400;
+}

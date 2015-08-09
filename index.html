@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +10,8 @@
 
     <title>Giftwrap Gift Finder</title>
 
+
+
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -21,16 +22,18 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
-    <script stc="js/facebook.js"></script>
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+      <script src="js/facebook.js"></script>
   </head>
 
-  <body>
+<body>
+
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -42,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">Giftwrap Gift Finder</a>
+            <img id="logo" src="img/giftwrappr_logo.png" alt="giftwrappr" >
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -63,94 +66,14 @@
     </nav>
 
 
+
+
+
 <div class="jumbotron">
    <div class="container">
       <h1>Gift Buying Automated.</h1>
       <p>The smart gift finder - Buy gifts based on your friends interests.</p>
       <p>To get started, connect to Facebook below</p>
-
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '1459057421065180',
-            xfbml      : true,
-            version    : 'v2.4'
-        });
-    };
-
-
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-
-        js = d.createElement(s); js.id = id;
-        console.log("js" ,js);
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-        console.log("fjs",fjs)
-    }(document, 'script', 'facebook-jssdk'));
-
-      function myFacebookLogin() {
-        FB.login(function (response) {
-            if (response.authResponse) {
-                FB.api(
-                        "/{friend-list-id}/members",
-                        function (response) {
-                            console.log(response);
-                            if (response && !response.error) {
-                                /* handle the result */
-                            }
-                        }
-                );
-                console.log('Welcome!  Fetching your information.... ');
-                FB.api('/me', function(response) {
-                    console.log('Good to see you, ' + response.name + '.');
-                });
-            } else {
-                console.log('User cancelled login or did not fully authorize.');
-            }
-        }, {scope: 'email,user_friends,read_custom_friendlists'});
-    }
-</script>
-
-<script>
-    function FBInvite(){
-        FB.ui({
-            method: 'send',
-            link: 'http://grumpygiraffe.github.io/Giftwrap/facebook.html',
-        });
-    }
-</script>
-
-<script>
-    var friendsList =
-    {"data": [
-        {
-            "name": "Tuğba Coşkun",
-            "id": "584223463345"
-        },
-        {
-            "name": "Vijay Prema",
-            "id": "689076168"
-        },
-        {
-            "name": "Lisa Maddock",
-            "id": "68953213384"
-        },
-        {
-            "name": "Robbie Bruck",
-            "id": "101524742248854151241"
-        }
-    ],
-            "summary": {
-        "total_count": 466
-    }};
-
-    console.log(friendsList);
-
-
-</script>
-
 
 <img id="facebookLogin" onClick="myFacebookLogin()" src="img/facebook_login.png" alt="Login with Facebook..." >
 

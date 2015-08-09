@@ -61,11 +61,7 @@ body {
   border-bottom: 1px solid #e5e5e5;
 }
 
-.jumbotron .img-responsive {
-    margin: 0 auto;
-	max-width: 534;
-	max-height:400;
-}
+
 
 #FB_TM_Title {
 	font-size:60px;
