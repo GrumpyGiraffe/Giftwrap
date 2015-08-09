@@ -34,6 +34,21 @@ var friendsLikes =
                 "name": "PS3",
                 "id": "625550504175443",
                 "created_time": "2014-11-26T23:26:46+000"
+            },
+            {
+                "name": "GoPro",
+                "id": "625550504175443",
+                "created_time": "2014-11-26T23:26:46+000"
+            },
+            {
+                "name": "Xbox",
+                "id": "625550504175443",
+                "created_time": "2014-11-26T23:26:46+000"
+            },
+            {
+                "name": "Monopoly",
+                "id": "625550504175443",
+                "created_time": "2014-11-26T23:26:46+000"
             }
         ]
     }
@@ -120,7 +135,7 @@ function selectFriend(id) {
 
 function myFacebookLogin() {
 
-    if (true) {
+    if (false) {
         facebookData.user = 'test';
         facebookData.userID = 123;
         //getFriendsList();
