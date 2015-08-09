@@ -7,10 +7,37 @@
     friendsList: [],
     selectedFriend: {},
     likes: [],
-    selectedLike: "",
+    selectedLike: ""
 };
 
 
+var friendsLikes =
+{
+    "likes": {
+        "data": [
+            {
+                "name": "Drone",
+                "id": "853199368081686",
+                "created_time": "2015-06-14T02:07:54+0000"
+            },
+            {
+                "name": "Mortal Kombat",
+                "id": "280916412057434",
+                "created_time": "2015-05-27T14:54:23+0000"
+            },
+            {
+                "name": "BMW",
+                "id": "208627045823173",
+                "created_time": "2015-01-09T11:20:01+0000"
+            },
+            {
+                "name": "PS3",
+                "id": "625550504175443",
+                "created_time": "2014-11-26T23:26:46+000"
+            }
+        ]
+    }
+};
 
 var friendsList =
 {"data": [
@@ -46,10 +73,6 @@ window.fbAsyncInit = function() {
         xfbml      : true,
         version    : 'v2.4'
     });
-
-
-
-
 };
 
 
@@ -65,23 +88,64 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 
+function getFriendsList(){
+    FB.api(
+        "/me/friends",
+        function (response) {
+            console.log(response);
+            if (response) {
+                var data = friendsList;
+                facebookData.friendsList = friendsList;
+
+
+            }
+        }
+    );
+}
+
+function get_keyword(friendId) {
+    var listOfLikes =  facebookData.likes;
+    console.log(listOfLikes);
+    var randomNumber = Math.round(Math.random() * (listOfLikes.length - 1));
+    console.log(listOfLikes[randomNumber]);
+    return listOfLikes[randomNumber].name;
+}
+
+function getFriendsLikes(id){
+    FB.api('/'+id+'/likes', function(response) {
+        console.log('friends likes',response);
+        if(response) {
+            var pages = response.data;
+            var data = friendsLikes;
+            facebookData.likes = data;
+            //Call function to get Random Likes
+            facebookData.selectedLike = get_keyword(facebookData.selectedFriend.id);
+
+        }
+
+    })
+}
+
+function selectFriend(id){
+    for(var i = 0; i<facebookData.friendsList.length; i++){
+        if(facebookData.friendsList[i].id == id){
+            console.log('id of selected friend', facebookData.friendsList[i].id);
+            facebookData.selectedFriend = facebookData.friendsList[i]
+        }
+    }
+}
+
 function myFacebookLogin() {
     FB.login(function (response) {
         if (response.authResponse) {
-            FB.api(
-                "/{friend-list-id}/members",
-                function (response) {
-                    console.log(response);
-                    if (response && !response.error) {
-                        /* handle the result */
-                    }
-                }
-            );
+
             console.log('Welcome!  Fetching your information.... ');
             FB.api('/me', function(response) {
                 facebookData.user = response.name;
-                console.log('response', response);
+                facebookData.userID = response.id;
+                getFriendsList();
                 console.log('Good to see you, ' + response.name + '.');
+                selectFriend(689076168);
             });
         } else {
             console.log('User cancelled login or did not fully authorize.');
@@ -120,3 +184,5 @@ function FBInvite(){
         link: 'http://grumpygiraffe.github.io/Giftwrap/facebook.html',
     });
 }
+
+console.log(facebookData);
