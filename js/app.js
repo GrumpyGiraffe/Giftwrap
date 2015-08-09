@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $( document ).ready(function() {
     	console.log('document ready');
 	$('#selectFriendsPageMenu').click(function(){
@@ -33,8 +32,6 @@ function updatePage(html) {
 	$('#content').html(html);
 }
 
-console.log('App.js');
-=======
 function getOption(){
     console.log($("#chooseFriend").val());
     return($("#chooseFriend").val());
@@ -51,4 +48,3 @@ function listFriends(){
         });
     }
 }
->>>>>>> 6bad93eff6c40d729fa9b00236044768ce5d8714
