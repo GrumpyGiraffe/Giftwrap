@@ -1,12 +1,32 @@
 $( document ).ready(function() {
     	console.log('document ready');
-	$('#selectFriendsPageMenu').click(function(){
-		load_selectedfriends();
-	});
-	$('#productMenu').click(function() {
-		load_product();
-	})
+	facebookStart();
+    trademeStart();
+    appStart();
 });
+
+
+function appStart() {
+    // Happens on index page
+    $('#selectFriendsPageMenu').click(function(){
+        load_selectedfriends();
+    });
+    $('#productMenu').click(function() {
+        load_product();
+    });
+    $('#facebookLogin').click(function() {
+        myFacebookLogin();
+        load_selectedfriends();
+    });
+    // Ajaxed content
+
+    $('#content').on('click', '#giftButton', function() {
+        var friendId = getOption();
+        selectFriend(friendId);
+        findGift(friendId);
+        load_product();
+    })
+}
 
 function load_selectedfriends() {
 	var url = 'templates/selectfriends.html';
@@ -14,7 +34,7 @@ function load_selectedfriends() {
 		url: url,
 		method: 'GET',	
 	}).done(function(data) {
-		updatePage(data);
+        getSelectedFriendsPage(data);
 	})
 }
 
@@ -22,29 +42,45 @@ function load_product() {
 	var url = 'templates/product.html';
 	$.ajax({
 		url: url,
-		method: 'GET',
+		method: 'GET'
 	}).done(function(data) {
-		updatePage(data);
+		getProductPage(data);
 	})
 }
 
+function getProductPage(html) {
+    updatePage(html);
+    $('#fbName').html(facebookData.selectedFriend.name);
+    $('#productName').html(trademeData.currentGift.title);
+    $('#price').html(trademeData.currentGift.price);
+    var link = '<a href="'+ trademeData.currentGift.url +'">View in TradeMe</a>';
+    var imageLink = '<img src="' + trademeData.currentGift.img + '">';
+    $('#trademeLink').html(link);
+    $('#productImage').html(imageLink);
+}
+
+function getSelectedFriendsPage(html){
+    updatePage(html);
+    $('#fbName').html(facebookData.user);
+    getFriendsList();
+}
 function updatePage(html) {
 	$('#content').html(html);
 }
 
 function getOption(){
-    console.log($("#chooseFriend").val());
     return($("#chooseFriend").val());
 }
 
-function listFriends(){
-    for(var i = 0; i<facebookData.friendsList.length; i++){
+function updateListFriends(){
+    var mySelect = $("#chooseFriend");
+    console.log('friendlist update', facebookData.friendsList);
+
+    for(var i = 0; i<facebookData.friendsList.data.length; i++){
+        console.log(facebookData.friendsList.data[i]);
+        var friend = facebookData.friendsList.data[i];
         console.log("GGG");
-        var mySelect = $("#chooseFriend");
-        $.each(facebookData.friendsList.data.name, function(val, text) {
-            mySelect.append(
-                $('<option></option>').val(val).html(text)
-            );
-        });
+            var html = '<option value="'+friend.id+'">' + friend.name + '</option>';
+            mySelect.append(html);
     }
 }

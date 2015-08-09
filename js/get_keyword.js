@@ -326,11 +326,12 @@ function get_keyword(friendId) {
 }
 
 function get_keywords() {
-  var listOfLikes =  jsonLikesList.data;
+  var listOfLikes = jsonLikesList.data;
   console.log(listOfLikes);
   //var randomNumber = Math.round(Math.random() * (listOfLikes.length - 1));
   //console.log(listOfLikes[randomNumber]);
   return listOfLikes;
+}
 
 function filterCategories(data) {
   var filteredData = [];

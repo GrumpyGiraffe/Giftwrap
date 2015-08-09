@@ -12,7 +12,18 @@ var trademeData = {
 var keywordIndex = 0;
 
 
-$(document).ready(function () {
+function trademeStart() {
+
+}
+
+function findGift(friendId) {
+    //get keywords should return a string
+    var keyword = get_keyword(friendId);
+    //console.log(keyword);
+    //use the first keyword to search
+    search(keyword);
+    trademeData.keyword = keyword;
+}
 
     var consumerKey = 'D878095ABE608E6AA6E5C47EBAFAC669';
     var consumerSecret = '8745D63A410A399375192C6960298D49%26';
@@ -28,12 +39,7 @@ $(document).ready(function () {
         search(searchTerm);
     });
 
-    //get keywordds should return a list of objects
-    var keywordList = get_keywords(); 
-    console.log(keywordList[keywordIndex]);
-    //use the first keyword to search
-    var searchTerm = search(keywordList[keywordIndex]);
-    trademeData.keyword = searchTerm;
+
     //search(searchTerm);
 
     //var search = function (searchTerm) {
@@ -125,5 +131,4 @@ $(document).ready(function () {
         console.log(keywordIndex);
         if(keywordIndex >= 0 && keywordIndex < keywordList.length)
           search(keywordList[keywordIndex]);
-    }); 
-});
+    });
