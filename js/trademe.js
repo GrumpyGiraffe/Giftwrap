@@ -47,7 +47,7 @@ $(document).ready(function () {
     };
 
     function updateTrademeData (data) {
-     alert('in update trademe data method');
+     //alert('in update trademe data method');
       trademeData.resultList = data.List;
       console.log(trademeData.resultList);
       //initializs the global object with the first object in the returned list
@@ -86,9 +86,9 @@ $(document).ready(function () {
 
     $('#next').click(function(){
       var index = trademeData.currentGiftIndex;
-      alert(trademeData.currentGiftIndex);
+      //alert(trademeData.currentGiftIndex);
       var newIndex = index + 1;
-      alert(newIndex);
+      //alert(newIndex);
       if(isValidIndex(newIndex)){
          updateCurrentGift(newIndex);
        }
@@ -96,9 +96,9 @@ $(document).ready(function () {
 
     $('#prev').click(function(){
       var index = trademeData.currentGiftIndex;
-      alert(trademeData.currentGiftIndex);
+      //alert(trademeData.currentGiftIndex);
       var newIndex = index - 1;
-      alert(newIndex);
+      //alert(newIndex);
       if(isValidIndex(newIndex)){
          updateCurrentGift(newIndex);
        }
