@@ -27,7 +27,7 @@ function findGift(friendId) {
 }
 
     var consumerKey = 'FBCC6994DA5FD0EEE9263438A300564A';
-    var consumerKey = 'E7B0A6F05B8086270FE27FD7A70C22DA';
+    var consumerSecret = 'E7B0A6F05B8086270FE27FD7A70C22DA';
     /*var consumerKey = 'D878095ABE608E6AA6E5C47EBAFAC669';
     var consumerSecret = '8745D63A410A399375192C6960298D49%26';*/
 
